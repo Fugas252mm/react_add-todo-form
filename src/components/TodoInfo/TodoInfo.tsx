@@ -3,12 +3,12 @@ import React, { useState } from 'react';
 
 type Props = {
   users: User[];
-  createNewTodo: (param: Todo[]) => void;
+  createNewTodo: (todo: Todo) => void;
   todos: Todo[];
 };
 
 export const TodoInfo: React.FC<Props> = ({ users, createNewTodo, todos }) => {
-  const [userSelect, setUserSeclect] = useState('');
+  const [userSelect, setUserSelect] = useState('');
   const [hasUserSelectError, setHasUserSelectError] = useState(false);
   const [title, setTitle] = useState('');
   const [hasTitleError, setHasTitleError] = useState(false);
@@ -38,10 +38,10 @@ export const TodoInfo: React.FC<Props> = ({ users, createNewTodo, todos }) => {
       return;
     }
 
-    createNewTodo([...todos, newTodo]);
+    createNewTodo(newTodo);
 
     setTitle('');
-    setUserSeclect('');
+    setUserSelect('');
   };
 
   return (
@@ -65,7 +65,7 @@ export const TodoInfo: React.FC<Props> = ({ users, createNewTodo, todos }) => {
             data-cy="userSelect"
             value={userSelect}
             onChange={event => {
-              setUserSeclect(event.target.value);
+              setUserSelect(event.target.value);
               setHasUserSelectError(false);
             }}
           >
